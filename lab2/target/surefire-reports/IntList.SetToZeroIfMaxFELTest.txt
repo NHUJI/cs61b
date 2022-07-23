@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: IntList.SetToZeroIfMaxFELTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0 sec <<< FAILURE!
+IntList.SetToZeroIfMaxFELTest.testZeroOutFELMaxes3()  Time elapsed: 0 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<... -> 0 -> 35 -> 0 -> [1]0 -> 0> but was:<... -> 0 -> 35 -> 0 -> []0 -> 0>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at IntList.SetToZeroIfMaxFELTest.testZeroOutFELMaxes3(SetToZeroIfMaxFELTest.java:26)
+

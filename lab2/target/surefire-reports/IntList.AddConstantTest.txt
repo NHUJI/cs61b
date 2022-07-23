@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Test set: IntList.AddConstantTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec <<< FAILURE!
+IntList.AddConstantTest.testAddConstantOne()  Time elapsed: 0.001 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<2 -> 3 -> 4 -> 5 -> [6]> but was:<2 -> 3 -> 4 -> 5 -> [5]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at IntList.AddConstantTest.testAddConstantOne(AddConstantTest.java:12)
+
+IntList.AddConstantTest.testAddConstantTwo()  Time elapsed: 0 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<3 -> 4 -> 5 -> 6 -> [7]> but was:<3 -> 4 -> 5 -> 6 -> [5]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at IntList.AddConstantTest.testAddConstantTwo(AddConstantTest.java:19)
+
+IntList.AddConstantTest.testAddToLargeList()  Time elapsed: 0 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<...> 16 -> 17 -> 18 -> [1]9> but was:<...> 16 -> 17 -> 18 -> []9>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at IntList.AddConstantTest.testAddToLargeList(AddConstantTest.java:26)
+
