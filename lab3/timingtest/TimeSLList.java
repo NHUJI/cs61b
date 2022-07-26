@@ -22,7 +22,31 @@ public class TimeSLList {
     }
 
     public static void timeGetLast() {
+
         // TODO: YOUR CODE HERE
+
+        AList<Double> DogTime = new AList();
+        AList<Integer> DogSize= new AList();
+        AList<Integer> DogOp= new AList();
+
+
+        int M = 10000;
+        //不断平方增加addLast操作的次数i
+        for(int i = 1000;i <= 128000;i = i*2){
+            SLList Dog = new SLList();
+            for(int j = 1;j<= i;j++){
+                Dog.addLast(1);
+            }
+            Stopwatch sw = new Stopwatch();
+            for(int k = 0; k < M;k++){
+               Dog.getLast();
+           }
+            DogTime.addLast(sw.elapsedTime());
+            DogSize.addLast(Dog.size());
+            DogOp.addLast(M);
+
+        }
+        printTimingTable(DogSize,DogTime,DogOp);
     }
 
 }

@@ -23,5 +23,23 @@ public class TimeAList {
 
     public static void timeAListConstruction() {
         // TODO: YOUR CODE HERE
+        //Dog时间、大小、操作次数记录
+        AList<Double> DogTime = new AList();
+        AList<Integer> DogSize= new AList();
+        AList<Integer> DogOp= new AList();
+        //不断平方增加addLast操作的次数i
+        for(int i = 1000;i<= 128000;i = i*2){
+            //创建测试数组
+            AList<Integer> Dog = new AList();
+            Stopwatch sw = new Stopwatch();
+            //进行i次addLast
+            for(int j = 1;j<= i;j++){
+                Dog.addLast(1);
+            }
+            DogTime.addLast(sw.elapsedTime());
+            DogSize.addLast(Dog.size());
+            DogOp.addLast(i);
+        }
+        printTimingTable(DogSize,DogTime,DogOp);
     }
 }
