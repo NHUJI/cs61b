@@ -1,9 +1,9 @@
 package deque;
-import org.xml.sax.ext.Locator2;
 
-import java.util.ArrayList;
+
+
 import java.util.Iterator;
-import java.util.LinkedList;
+
 
 public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
     //StuffNode就是具体的数节点
