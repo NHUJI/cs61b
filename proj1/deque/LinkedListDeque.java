@@ -1,6 +1,11 @@
 package deque;
+import org.xml.sax.ext.Locator2;
 
-public class LinkedListDeque<LochNess> {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
     //StuffNode就是具体的数节点
     private  class StuffNode {
         public LochNess item;
@@ -43,7 +48,7 @@ public class LinkedListDeque<LochNess> {
 //        size = 1;
 //    }
 
-    /** Adds x to the front of the list.先不处理 */
+    /** Adds x to the front of the list. */
     public void addFirst(LochNess x) {
         //把sentinel的下一个修改为新添加的
         sentinel.next = new StuffNode(x, sentinel,sentinel.next);
@@ -110,7 +115,7 @@ public class LinkedListDeque<LochNess> {
         return last;
     }
     /** Remove x to the first of the list.
-     * 删掉Deque最后一个值*/
+     * 删掉Deque最前面一个值*/
     public LochNess removeFirst(){
         LochNess  first = null;
         if(sentinel.next != sentinel){
@@ -125,6 +130,7 @@ public class LinkedListDeque<LochNess> {
         }
         return first;
     }
+    //返回对应index的值
     public LochNess get(int index){
         StuffNode p = sentinel;
         if (index >= size){
@@ -150,7 +156,64 @@ public class LinkedListDeque<LochNess> {
         return getRecursive(index - 1, node.next);
     }
 
+    /** returns an iterator (a.k.a. seer)  */
+    public Iterator<LochNess> iterator() {
+        return new LinkedListIterator();
+    }
 
+    private class LinkedListIterator implements Iterator<LochNess> {
+        //指针
+        private int wizPos;
+
+        public LinkedListIterator() {
+            wizPos = 0;
+        }
+
+        public boolean hasNext() {
+            return wizPos < size;
+        }
+
+        public LochNess next() {
+            //重写指向下一个的指针
+            LochNess returnItem =get(wizPos);
+            wizPos += 1;
+            return returnItem;
+
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        //如果比较对象就是本身，跳过接下来的比对
+        if (this == other) {
+            return true;
+        }
+        //如果比较对象是null false
+        if (other == null) {
+            return false;
+        }
+        //如果不是LLD返回错误
+        if(other instanceof LinkedListDeque){
+            return false;
+        }
+//        if (other.getClass() != this.getClass()) {
+//            return false;
+//        }
+       //other转换为LinkedListDeque
+        LinkedListDeque<LochNess> o = (LinkedListDeque<LochNess>) other;
+        //大小不同返回false
+        if (o.size() != this.size()) {
+            return false;
+        }
+        //迭代进行对比
+        for (int i=0;i<size;i++){
+            if(this.get(i)!=o.get(i)){
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public static void main(String[] args) {
         /* Creates a list of one integer, namely 10 */
@@ -158,15 +221,21 @@ public class LinkedListDeque<LochNess> {
 
         L.addLast(20);
         L.addLast(40);
-        L.addLast(33);
-        L.addLast(34);
-        L.addLast(39);
-        L.addLast(28);
+
+
+        ArrayList<Integer> L2 = new ArrayList<>();
+        L2.add(20);
+        L2.add(40);
+
+        LinkedListDeque<Integer> L3 = new LinkedListDeque<>();
+        L3.addLast(40);
+        L3.addLast(20);
+
 
         L.printDeque();
-
-        System.out.println(L.getRecursive(5));
-        L.printDeque();
+        System.out.println(L2);
+        L3.printDeque();
+        System.out.println(L.equals(L3));
 
     }
 }
