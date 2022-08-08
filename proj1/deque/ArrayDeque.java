@@ -82,6 +82,9 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
     /** Remove x to the first of the list.
      * 删掉Deque最前面一个值并返回这个值*/
     public LochNess removeFirst(){
+        if(isEmpty()){
+            return null;
+        }
         LochNess  first = null;
         //先储存addFirst指针后的值，然后删除它，并调整指针，再调整大小
         //各种操作都需要考虑addFirst指针过界的情况
@@ -102,6 +105,9 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
     /** Remove x to the end of the list.
      * 删掉Deque最后一个值*/
     public LochNess removeLast(){
+        if(isEmpty()){
+            return null;
+        }
         LochNess  last = null;
         if(addLast==0){
             //如果值在数组最后一个也就是指针在数组第一个，就删除数组最后一个的值
@@ -114,7 +120,6 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
             addLast=addLast-1;
         }
         size=size-1;
-
         return last;
     }
     /** 返回对应index的值*/
@@ -149,6 +154,9 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         A.addFirst(15);
 
         A.printDeque();
-        System.out.println(A.get(4));
+
+A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();
+        A.removeLast();
+
     }
 }

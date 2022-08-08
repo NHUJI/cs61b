@@ -223,7 +223,7 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
         L.addLast(40);
 
 
-       
+
 
         LinkedListDeque<Integer> L3 = new LinkedListDeque<>();
         L3.addLast(40);
@@ -231,7 +231,7 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
 
 
         L.printDeque();
-        System.out.println(L2);
+
         L3.printDeque();
         System.out.println(L.equals(L3));
 
