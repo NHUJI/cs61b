@@ -3,22 +3,15 @@
  */
 public class Collatz {
 
-    /** Buggy implementation of nextNumber!
-     * 返回下一个collatz数字
-     *
-     * */
+    /** Buggy implementation of nextNumber! */
     public static int nextNumber(int n) {
-        int nextNumber ;
-        if(n == 1){
-            nextNumber = 1 ;
-
-        } else if (n%2 == 0) {
-            nextNumber = n/2;
-        }else
-        {
-            nextNumber = 3*n+1;
+        if (n  == 128) {
+            return 1;
+        } else if (n == 5) {
+            return 3 * n + 1;
+        } else {
+            return n * 2;
         }
-        return  nextNumber;
     }
 
     public static void main(String[] args) {
