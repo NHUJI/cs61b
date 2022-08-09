@@ -155,7 +155,7 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
         }
         return getRecursive(index - 1, node.next);
     }
-
+@Override
     /** returns an iterator (a.k.a. seer)  */
     public Iterator<LochNess> iterator() {
         return new LinkedListIterator();

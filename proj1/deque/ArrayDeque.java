@@ -14,6 +14,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
     private int addFirst;
     private int addLast;
 
+
    public  ArrayDeque(){
     items = (LochNess[]) new Object[8];
     size = 0;
@@ -34,6 +35,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         }else {
             addFirst = addFirst - 1 ;
         }
+        reSize();
     }
     /** Adds x to the end of the list. */
     public void addLast(LochNess x) {
@@ -45,6 +47,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         else {
             addLast = addLast + 1 ;
         }
+        reSize();
     }
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
@@ -71,7 +74,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
             System.out.print(items[i] + " ");
         }
         //如果末尾的指针小于前面的指针说明数组完了但Deque还没结束
-        if(addLast<addFirst){
+        if(addLast<=addFirst){
             for(int i=0;i< addLast;i++){
                 System.out.print(items[i] + " ");
             }
@@ -99,7 +102,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
             addFirst=addFirst+1;
         }
         size=size-1;
-
+        reSize();
         return first;
     }
     /** Remove x to the end of the list.
@@ -120,6 +123,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
             addLast=addLast-1;
         }
         size=size-1;
+        reSize();
         return last;
     }
     /** 返回对应index的值*/
@@ -131,7 +135,39 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
        }
         return items[get];
     }
-
+    //每次进行Deque的改变操作后都call这个函数，然后自动根据当前的状况放大或缩小Array
+    /**自动改变Array大小
+     * */
+    public void reSize(){
+        //如果Deque大小和数组内核大小相同就扩大
+        if(size == items.length){
+            //创建2倍大的新数组
+            LochNess[] temp;
+            temp = (LochNess[]) new Object[items.length*2];
+            //转移值到新数组
+            for(int i = 0;i <size;i++){
+                temp[i]=get(i);
+            }
+            items = temp;
+            //重设指针
+            addFirst = temp.length-1;
+            addLast =size;
+        }
+        //如果利用率小于25%就减半数组大小
+        if(size< items.length/4){
+            //创建缩小50%的新数组
+            LochNess[] temp;
+            temp = (LochNess[]) new Object[items.length/2];
+            //转移值到新数组
+            for(int i = 0;i <size;i++){
+                temp[i]=get(i);
+            }
+            items = temp;
+            //重设指针
+            addFirst = temp.length-1;
+            addLast =size;
+        }
+    }
 
 
 
@@ -142,7 +178,28 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
 
     @Override
     public Iterator<LochNess> iterator() {
-        return null;
+        return new arrayIterator();
+    }
+
+    private class arrayIterator implements Iterator<LochNess> {
+        //指针
+        private int wizPos;
+
+        public arrayIterator() {
+            wizPos = 0;
+        }
+
+        public boolean hasNext() {
+            return wizPos < size;
+        }
+
+        public LochNess next() {
+            //重写指向下一个的指针
+            LochNess returnItem =get(wizPos);
+            wizPos += 1;
+            return returnItem;
+
+        }
     }
 
     public static void main(String[] args) {
@@ -152,11 +209,25 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         A.addFirst(12);
         A.addFirst(34);
         A.addFirst(15);
+        A.addFirst(3);
+        A.addLast(4);
+        A.addFirst(12);
+        A.addFirst(34);
+        A.printDeque();
+        A.removeLast();
+        A.removeLast();
+        A.removeLast();
+        A.removeLast();
+        A.removeLast();
+        A.removeLast();
+        A.removeLast();
+        A.removeLast();
+        A.removeLast();
+
+
+
 
         A.printDeque();
-
-A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();A.removeLast();
-        A.removeLast();
 
     }
 }
