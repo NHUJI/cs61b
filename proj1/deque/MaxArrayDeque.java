@@ -2,10 +2,10 @@ package deque;
 
 import java.util.Comparator;
 
-public class MaxArrayDeque<LochNess> extends ArrayDeque<LochNess>{
+public class MaxArrayDeque<T> extends ArrayDeque<T>{
     //通过给定的comparator创建MAD
     Comparator comparator;
-    public MaxArrayDeque(Comparator<LochNess> c){
+    public MaxArrayDeque(Comparator<T> c){
         //把创建时传入的comparator存起来
         comparator = c;
     }
@@ -17,13 +17,13 @@ public class MaxArrayDeque<LochNess> extends ArrayDeque<LochNess>{
      * 如果MAD为空返回null
      * 使用创建时给定的comparator
      * */
-    public LochNess max() {
+    public T max() {
         if (size() == 0) {
             return null;
         }
-        LochNess maxT = get(0);
+        T maxT = get(0);
         for (int i = 1; i < size(); i += 1) {
-            LochNess getI = get(i);
+            T getI = get(i);
             if (comparator.compare(maxT, getI) < 0) {
                 maxT = getI;
             }
@@ -37,7 +37,7 @@ public class MaxArrayDeque<LochNess> extends ArrayDeque<LochNess>{
      * 如果MAD为空返回null
      * 需要指定comparator
      * */
-    public LochNess max(Comparator<LochNess> c){
+    public T max(Comparator<T> c){
         //重设comparator
         comparator = c;
         //没必要再去重复代码，直接再调用max（）

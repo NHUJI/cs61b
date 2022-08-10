@@ -5,15 +5,15 @@ package deque;
 import java.util.Iterator;
 
 
-public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
+public class LinkedListDeque<T> implements Iterable<T>{
     //StuffNode就是具体的数节点
     private  class StuffNode {
-        public LochNess item;
+        public T item;
         //既然是Deque，所以添加向前的点
         public StuffNode last;
         public StuffNode next;
 
-        public StuffNode(LochNess i, StuffNode l, StuffNode n) {
+        public StuffNode(T i, StuffNode l, StuffNode n) {
             item = i;
             //添加向前的
             last = l;
@@ -40,7 +40,7 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
     }
 
 //给带值的初始化使用 先不处理
-//   public LinkedListDeque(LochNess x) {
+//   public LinkedListDeque(T x) {
 //        sentinel = new StuffNode(63, null,null);
 //        sentinel.next = new StuffNode(x, null,null);
 //        sentinel.next.last = sentinel.last;
@@ -49,7 +49,7 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
 //    }
 
     /** Adds x to the front of the list. */
-    public void addFirst(LochNess x) {
+    public void addFirst(T x) {
         //把sentinel的下一个修改为新添加的
         sentinel.next = new StuffNode(x, sentinel,sentinel.next);
         //把原本sentinel.next的last改为新添加的
@@ -58,12 +58,12 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
     }
 
     /** Returns the first item in the list. */
-    public LochNess getFirst() {
+    public T getFirst() {
         return sentinel.next.item;
     }
 
     /** Adds x to the end of the list. */
-    public void addLast(LochNess x) {
+    public void addLast(T x) {
         size = size + 1;
         //第一项的前一个就是最后一个StuffNode
         StuffNode p = sentinel.last;
@@ -100,8 +100,8 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
     }
     /** Remove x to the end of the list.
      * 删掉Deque最后一个值*/
-    public LochNess removeLast(){
-        LochNess  last = null;
+    public T removeLast(){
+        T  last = null;
         if(sentinel.next != sentinel){
         //记录要返回的值
         last = sentinel.last.item ;
@@ -116,8 +116,8 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
     }
     /** Remove x to the first of the list.
      * 删掉Deque最前面一个值*/
-    public LochNess removeFirst(){
-        LochNess  first = null;
+    public T removeFirst(){
+        T  first = null;
         if(sentinel.next != sentinel){
             //记录要返回的值
             first = sentinel.next.item ;
@@ -131,7 +131,7 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
         return first;
     }
     //返回对应index的值
-    public LochNess get(int index){
+    public T get(int index){
         StuffNode p = sentinel;
         if (index >= size){
             return null;
@@ -143,13 +143,13 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
 
     }
    /**使用递归实现的get方法 返回index对应的数*/
-    public LochNess getRecursive(int index){
+    public T getRecursive(int index){
         if(index>size){
             return null;
         }
         return getRecursive(index, sentinel.next);
     }
-    public LochNess getRecursive(int index,StuffNode node){
+    public T getRecursive(int index,StuffNode node){
         if (index == 0) {
             return node.item;
         }
@@ -157,11 +157,11 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
     }
 @Override
     /** returns an iterator (a.k.a. seer)  */
-    public Iterator<LochNess> iterator() {
+    public Iterator<T> iterator() {
         return new LinkedListIterator();
     }
 
-    private class LinkedListIterator implements Iterator<LochNess> {
+    private class LinkedListIterator implements Iterator<T> {
         //指针
         private int wizPos;
 
@@ -173,9 +173,9 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
             return wizPos < size;
         }
 
-        public LochNess next() {
+        public T next() {
             //重写指向下一个的指针
-            LochNess returnItem =get(wizPos);
+            T returnItem =get(wizPos);
             wizPos += 1;
             return returnItem;
 
@@ -200,7 +200,7 @@ public class LinkedListDeque<LochNess> implements Iterable<LochNess>{
 //            return false;
 //        }
        //other转换为LinkedListDeque
-        LinkedListDeque<LochNess> o = (LinkedListDeque<LochNess>) other;
+        LinkedListDeque<T> o = (LinkedListDeque<T>) other;
         //大小不同返回false
         if (o.size() != this.size()) {
             return false;

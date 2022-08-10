@@ -7,16 +7,16 @@ import java.util.Iterator;
 // items: [6 9 -1 2 0 0 0 0 ...]
 // size: 4
 
-public class ArrayDeque<LochNess> implements Iterable<LochNess> {
-    //根据T也就是LochNess来改变ArrayDeque的储存类型
-    private LochNess[] items;
+public class ArrayDeque<T> implements Iterable<T> {
+    //根据T也就是T来改变ArrayDeque的储存类型
+    private T[] items;
     private int size;
     private int addFirst;
     private int addLast;
 
 
    public  ArrayDeque(){
-    items = (LochNess[]) new Object[8];
+    items = (T[]) new Object[8];
     size = 0;
     //初始化指针，我选择从数组的第一位开始Deque
     addFirst = 0;
@@ -25,7 +25,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
 
    }
     /** Adds x to the front of the list. */
-    public void addFirst(LochNess x) {
+    public void addFirst(T x) {
        //把值放入addFirst
         items[addFirst]=x;
         size=size+1;
@@ -38,7 +38,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         reSize();
     }
     /** Adds x to the end of the list. */
-    public void addLast(LochNess x) {
+    public void addLast(T x) {
         items[addLast]=x;
         size = size + 1;
         if(addLast== items.length-1){
@@ -84,11 +84,11 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
 
     /** Remove x to the first of the list.
      * 删掉Deque最前面一个值并返回这个值*/
-    public LochNess removeFirst(){
+    public T removeFirst(){
         if(isEmpty()){
             return null;
         }
-        LochNess  first = null;
+        T  first = null;
         //先储存addFirst指针后的值，然后删除它，并调整指针，再调整大小
         //各种操作都需要考虑addFirst指针过界的情况
         if(addFirst==items.length-1){
@@ -107,11 +107,11 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
     }
     /** Remove x to the end of the list.
      * 删掉Deque最后一个值*/
-    public LochNess removeLast(){
+    public T removeLast(){
         if(isEmpty()){
             return null;
         }
-        LochNess  last = null;
+        T  last = null;
         if(addLast==0){
             //如果值在数组最后一个也就是指针在数组第一个，就删除数组最后一个的值
             last = items[items.length-1];
@@ -127,7 +127,7 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         return last;
     }
     /** 返回对应index的值*/
-    public LochNess get(int index){
+    public T get(int index){
         //要返回的值在数组里的位置
         int get = addFirst+1+index;
        if(get> items.length-1){
@@ -142,8 +142,8 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         //如果Deque大小和数组内核大小相同就扩大
         if(size == items.length){
             //创建2倍大的新数组
-            LochNess[] temp;
-            temp = (LochNess[]) new Object[items.length*2];
+            T[] temp;
+            temp = (T[]) new Object[items.length*2];
             //转移值到新数组
             for(int i = 0;i <size;i++){
                 temp[i]=get(i);
@@ -156,8 +156,8 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
         //如果利用率小于25%就减半数组大小
         if(size< items.length/4){
             //创建缩小50%的新数组
-            LochNess[] temp;
-            temp = (LochNess[]) new Object[items.length/2];
+            T[] temp;
+            temp = (T[]) new Object[items.length/2];
             //转移值到新数组
             for(int i = 0;i <size;i++){
                 temp[i]=get(i);
@@ -177,11 +177,11 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
 
 
     @Override
-    public Iterator<LochNess> iterator() {
+    public Iterator<T> iterator() {
         return new arrayIterator();
     }
 
-    private class arrayIterator implements Iterator<LochNess> {
+    private class arrayIterator implements Iterator<T> {
         //指针
         private int wizPos;
 
@@ -193,9 +193,9 @@ public class ArrayDeque<LochNess> implements Iterable<LochNess> {
             return wizPos < size;
         }
 
-        public LochNess next() {
+        public T next() {
             //重写指向下一个的指针
-            LochNess returnItem =get(wizPos);
+            T returnItem =get(wizPos);
             wizPos += 1;
             return returnItem;
 
