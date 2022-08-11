@@ -1,6 +1,6 @@
 package deque;
 
-import java.lang.reflect.Array;
+
 import java.util.Iterator;
 
 //         0 1  2 3 4 5 6 7
