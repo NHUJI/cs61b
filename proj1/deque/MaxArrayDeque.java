@@ -47,25 +47,25 @@ public class MaxArrayDeque<T> extends ArrayDeque<T>{
 
 
     public static void main(String[] args) {
-        MaxArrayDeque<Integer> A = new MaxArrayDeque<Integer>();
-        A.addFirst(3);
-        A.addLast(4);
-        A.addFirst(12);
-        A.addFirst(34);
-        A.addFirst(15);
-        A.addFirst(3);
-        A.addLast(4);
-        A.addFirst(12);
-        A.addFirst(34);
-        A.printDeque();
-        A.removeLast();
-
-
-        A.removeLast();
-
-
-
-
-        A.printDeque();
+//        MaxArrayDeque<Integer> A = new MaxArrayDeque<Integer>();
+//        A.addFirst(3);
+//        A.addLast(4);
+//        A.addFirst(12);
+//        A.addFirst(34);
+//        A.addFirst(15);
+//        A.addFirst(3);
+//        A.addLast(4);
+//        A.addFirst(12);
+//        A.addFirst(34);
+//        A.printDeque();
+//        A.removeLast();
+//
+//
+//        A.removeLast();
+//
+//
+//
+//
+//        A.printDeque();
     }
 }

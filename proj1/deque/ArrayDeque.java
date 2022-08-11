@@ -203,31 +203,6 @@ public class ArrayDeque<T> implements Iterable<T> {
     }
 
     public static void main(String[] args) {
-        ArrayDeque<Integer> A = new ArrayDeque<>();
-        A.addFirst(3);
-        A.addLast(4);
-        A.addFirst(12);
-        A.addFirst(34);
-        A.addFirst(15);
-        A.addFirst(3);
-        A.addLast(4);
-        A.addFirst(12);
-        A.addFirst(34);
-        A.printDeque();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-
-
-
-
-        A.printDeque();
 
     }
 }

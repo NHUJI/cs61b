@@ -217,23 +217,23 @@ public class LinkedListDeque<T> implements Iterable<T>{
 
     public static void main(String[] args) {
         /* Creates a list of one integer, namely 10 */
-        LinkedListDeque<Integer> L = new LinkedListDeque<>();
-
-        L.addLast(20);
-        L.addLast(40);
-
-
-
-
-        LinkedListDeque<Integer> L3 = new LinkedListDeque<>();
-        L3.addLast(40);
-        L3.addLast(20);
-
-
-        L.printDeque();
-
-        L3.printDeque();
-        System.out.println(L.equals(L3));
+//        LinkedListDeque<Integer> L = new LinkedListDeque<>();
+//
+//        L.addLast(20);
+//        L.addLast(40);
+//
+//
+//
+//
+//        LinkedListDeque<Integer> L3 = new LinkedListDeque<>();
+//        L3.addLast(40);
+//        L3.addLast(20);
+//
+//
+//        L.printDeque();
+//
+//        L3.printDeque();
+//        System.out.println(L.equals(L3));
 
     }
 }
