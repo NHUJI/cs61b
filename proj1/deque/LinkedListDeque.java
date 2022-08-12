@@ -5,7 +5,7 @@ package deque;
 import java.util.Iterator;
 
 
-public class LinkedListDeque<T> implements Iterable<T>{
+public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     //StuffNode就是具体的数节点
     private  class StuffNode {
         public T item;
@@ -47,7 +47,7 @@ public class LinkedListDeque<T> implements Iterable<T>{
 //        sentinel.next.next = sentinel;
 //        size = 1;
 //    }
-
+@Override
     /** Adds x to the front of the list. */
     public void addFirst(T x) {
         //把sentinel的下一个修改为新添加的
@@ -61,7 +61,7 @@ public class LinkedListDeque<T> implements Iterable<T>{
     public T getFirst() {
         return sentinel.next.item;
     }
-
+    @Override
     /** Adds x to the end of the list. */
     public void addLast(T x) {
         size = size + 1;
@@ -72,21 +72,12 @@ public class LinkedListDeque<T> implements Iterable<T>{
         //修改sentinel的上一个为最新创建的一个
         sentinel.last = p.next;
     }
-    /** Returns true if deque is empty, false otherwise. */
-    public boolean isEmpty() {
-        //为了单一出口考虑设置一个变量
-        boolean isEmpty = false;
-        if(size == 0){
-            isEmpty = true;
-        }
-        return isEmpty;
-    }
-
+    @Override
     /** Returns the size of the list. */
     public int size() {
         return size;
     }
-
+    @Override
     /** Print all item in Deque
      * 打印整个Deque的值. */
     public void printDeque(){
@@ -98,6 +89,7 @@ public class LinkedListDeque<T> implements Iterable<T>{
         }
         System.out.println();
     }
+    @Override
     /** Remove x to the end of the list.
      * 删掉Deque最后一个值*/
     public T removeLast(){
@@ -114,6 +106,7 @@ public class LinkedListDeque<T> implements Iterable<T>{
         }
         return last;
     }
+    @Override
     /** Remove x to the first of the list.
      * 删掉Deque最前面一个值*/
     public T removeFirst(){
@@ -130,6 +123,7 @@ public class LinkedListDeque<T> implements Iterable<T>{
         }
         return first;
     }
+    @Override
     //返回对应index的值
     public T get(int index){
         StuffNode p = sentinel;

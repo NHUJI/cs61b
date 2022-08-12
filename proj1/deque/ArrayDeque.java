@@ -3,11 +3,12 @@ package deque;
 
 import java.util.Iterator;
 
+
 //         0 1  2 3 4 5 6 7
 // items: [6 9 -1 2 0 0 0 0 ...]
 // size: 4
 
-public class ArrayDeque<T> implements Iterable<T> {
+public class ArrayDeque<T>  implements Iterable<T>, Deque<T>  {
     //根据T也就是T来改变ArrayDeque的储存类型
     private T[] items;
     private int size;
@@ -24,6 +25,7 @@ public class ArrayDeque<T> implements Iterable<T> {
 
 
    }
+    @Override
     /** Adds x to the front of the list. */
     public void addFirst(T x) {
        //把值放入addFirst
@@ -37,6 +39,7 @@ public class ArrayDeque<T> implements Iterable<T> {
         }
         reSize();
     }
+    @Override
     /** Adds x to the end of the list. */
     public void addLast(T x) {
         items[addLast]=x;
@@ -49,20 +52,13 @@ public class ArrayDeque<T> implements Iterable<T> {
         }
         reSize();
     }
-    /** Returns true if deque is empty, false otherwise. */
-    public boolean isEmpty() {
-        //为了单一出口考虑设置一个变量
-        boolean isEmpty = false;
-        if(size == 0){
-            isEmpty = true;
-        }
-        return isEmpty;
-    }
+
+    @Override
     /** Returns the size of the list. */
     public int size() {
         return size;
     }
-
+    @Override
     /** Print all item in Deque
      * 打印整个Deque的值. */
     public void printDeque(){
@@ -81,7 +77,7 @@ public class ArrayDeque<T> implements Iterable<T> {
         }
         System.out.println();
     }
-
+    @Override
     /** Remove x to the first of the list.
      * 删掉Deque最前面一个值并返回这个值*/
     public T removeFirst(){
@@ -105,6 +101,7 @@ public class ArrayDeque<T> implements Iterable<T> {
         reSize();
         return first;
     }
+    @Override
     /** Remove x to the end of the list.
      * 删掉Deque最后一个值*/
     public T removeLast(){
@@ -126,6 +123,7 @@ public class ArrayDeque<T> implements Iterable<T> {
         reSize();
         return last;
     }
+    @Override
     /** 返回对应index的值*/
     public T get(int index){
         //要返回的值在数组里的位置
@@ -203,6 +201,9 @@ public class ArrayDeque<T> implements Iterable<T> {
     }
 
     public static void main(String[] args) {
+        Deque<Integer> a = new ArrayDeque<>();
+
+
 
     }
 }
