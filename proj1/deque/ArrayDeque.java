@@ -167,6 +167,19 @@ public class ArrayDeque<T>  implements Iterable<T>, Deque<T>  {
         }
     }
 
+    public boolean changeValue(int index,T change){
+        if(index<0){
+            return false;
+        }
+        //要返回的值在数组里的位置
+        int get = addFirst+1+index;
+        if(get> items.length-1){
+            items[get-items.length]=change;
+            return true;
+        }
+        items[get]=change;
+        return true;
+    }
 
 
 
@@ -201,9 +214,18 @@ public class ArrayDeque<T>  implements Iterable<T>, Deque<T>  {
     }
 
     public static void main(String[] args) {
-        Deque<Integer> a = new ArrayDeque<>();
-
-
-
+//       ArrayDeque<Integer> L=new ArrayDeque<>();
+//       L.addLast(1);
+//       L.addLast(2);
+//       L.addLast(5);
+//       L.addLast(6);
+//       L.addLast(7);
+//       L.addFirst(18);
+//       L.changeValue(2,9);
+//       L.changeValue(4,13);
+//       L.changeValue(0,13);
+//
+//L.printDeque();
+System.out.println(Math.random() - 0.5);
     }
 }
