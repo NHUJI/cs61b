@@ -1,6 +1,9 @@
 package capers;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+
 import static capers.Utils.*;
 
 /** A repository for Capers 
@@ -18,8 +21,10 @@ public class CapersRepository {
     static final File CWD = new File(System.getProperty("user.dir"));
 
     /** Main metadata folder. */
-    static final File CAPERS_FOLDER = null; // TODO Hint: look at the `join`
-                                            //      function in Utils
+//    生成.capers文件夹的目录地址
+    static final File CAPERS_FOLDER = Utils.join(CWD, ".capers");
+    static Dog ourDog;
+
 
     /**
      * Does required filesystem operations to allow for persistence.
@@ -31,7 +36,11 @@ public class CapersRepository {
      *    - story -- file containing the current story
      */
     public static void setupPersistence() {
-        // TODO
+        //创建.capers/
+        //       - dogs/
+        CAPERS_FOLDER.mkdir();
+        Dog.DOG_FOLDER.mkdir();
+
     }
 
     /**
@@ -39,8 +48,25 @@ public class CapersRepository {
      * to a file called `story` in the .capers directory.
      * @param text String of the text to be appended to the story
      */
-    public static void writeStory(String text) {
-        // TODO
+    public static void writeStory(String text)  {
+        File storyFile = Utils.join(CAPERS_FOLDER,"story.text");
+
+        //检查文件是否存在
+        if(storyFile.exists()){
+            //String形式加载内容
+            String readContents =Utils.readContentsAsString(storyFile);
+            //支持多参数，所以我们不用手动相加String
+            Utils.writeContents(storyFile, readContents,"\n",text);
+        }else {
+            try {
+                storyFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            //写入内容
+            Utils.writeContents(storyFile, text);
+        }
+        System.out.println(Utils.readContentsAsString(storyFile));
     }
 
     /**
@@ -49,7 +75,12 @@ public class CapersRepository {
      * Also prints out the dog's information using toString().
      */
     public static void makeDog(String name, String breed, int age) {
-        // TODO
+
+        ourDog = new Dog(name,breed,age);
+        //存储Dog到文件夹
+        ourDog.saveDog();
+        System.out.println(ourDog.toString());
+
     }
 
     /**
@@ -60,5 +91,12 @@ public class CapersRepository {
      */
     public static void celebrateBirthday(String name) {
         // TODO
+        ourDog = Dog.fromFile(name);
+        ourDog.haveBirthday();
+        ourDog.saveDog();
+
+
+
     }
+
 }

@@ -1,11 +1,12 @@
 package capers;
 
 import java.io.File;
+import java.util.Arrays;
 
 import static capers.Utils.*;
 
 /** Canine Capers: A Gitlet Prelude.
- * @author TODO
+ * @author HUHU
 */
 public class Main {
     /**
@@ -51,12 +52,16 @@ public class Main {
             CapersRepository.writeStory(text);
             break;
         case "dog":
+            //dog [name] [breed] [age]
             validateNumArgs("dog", args, 4);
-            // TODO: make a dog
+            // age String to int
+            int  age = Integer.parseInt(args[3]);
+            CapersRepository.makeDog(args[1],args[2],age);
             break;
         case "birthday":
+            //birthday [name]
             validateNumArgs("birthday", args, 2);
-            // TODO: celebrate this dog's birthday
+            CapersRepository.celebrateBirthday(args[1]);
             break;
         default:
             exitWithError(String.format("Unknown command: %s", args[0]));
@@ -78,4 +83,5 @@ public class Main {
                 String.format("Invalid number of arguments for: %s.", cmd));
         }
     }
+
 }
