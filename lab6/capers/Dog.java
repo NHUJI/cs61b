@@ -13,7 +13,7 @@ public class Dog implements Serializable {
     /** Folder that dogs live in. */
     static final File DOG_FOLDER = Utils.join(CapersRepository.CAPERS_FOLDER, "dogs");
 
-
+//测试
     /** Age of dog. */
     private int age;
     /** Breed of dog. */
