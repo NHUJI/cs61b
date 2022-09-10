@@ -6,7 +6,8 @@ import java.util.Set;
 /** A data structure that uses a linked list to store pairs of keys and values.
  *  Any key must appear at most once in the dictionary, but values may appear multiple
  *  times. Key operations are get(key), put(key, value), and contains(key) methods. The value
- *  associated to a key is the value in the last call to put with that key. */
+ *  associated to a key is the value in the last call to put with that key.
+ *  测试用*/
 public class ULLMap<K, V>  implements Map61B<K, V> {
 
     int size = 0;
