@@ -137,6 +137,13 @@ public class BSTMap<K extends Comparable, V>  implements Map61B<K, V>  {
         int i = 0;
         BSTMap<String, Integer> b = new BSTMap<String, Integer>();
         b.put("hi" + 0, 1+0);
+        b.put("a" , 231);
+        b.put("bi" , 42);
+        b.put("c" , 1242);
+        b.put("b" ,13442 );
+        b.put("apple" , 114514);
+        b.put("zoo" , 21344);
+
         b.containsKey("hi" + i);
         System.out.println(b.containsKey("hi" + i));
 
